@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.butlr.io/getting-started/authentication.md
+docs: https://docs.butlr.io/getting-started/authentication.md
+summary:
+  types: [oauth2]
+  api_key_in: []
+  oauth2_flows: [password, clientCredentials]
+  identity_provider: Auth0
+description: >-
+  The Butlr API is protected with OAuth 2.0 bearer tokens issued by Auth0. Two
+  grant types are supported: the Password grant (for user-context access,
+  returns access_token + refresh_token + id_token) and the Client Credentials
+  grant (machine-to-machine, for server-to-server access using a Client ID and
+  Client Secret minted from the Butlr Web App API tokens tab). Tokens are
+  presented as `Authorization: Bearer <access_token>` on subsequent GraphQL and
+  Reporting API calls. The official MCP server uses the client credentials grant.
+schemes:
+  - name: OAuth2PasswordGrant
+    type: oauth2
+    flow: password
+    token_endpoint: https://api.butlr.io/api/v2/login
+    request_body: { username, password }
+    returns: [access_token, refresh_token, id_token, scope, expires_in, token_type]
+    token_type: Bearer
+    source: docs
+  - name: OAuth2ClientCredentials
+    type: oauth2
+    flow: clientCredentials
+    token_endpoint: https://api.butlr.io/api/v2/clients/login
+    audience: https://butlrauth/
+    request_body: { client_id, client_secret, audience, grant_type: client_credentials }
+    returns: [access_token, scope, expires_in, token_type]
+    token_type: Bearer
+    credential_minting: https://app.butlr.io  # Account Settings -> API tokens -> Create token
+    source: docs
+notes:
+  - Client credentials are the recommended path for server-to-server and agent (MCP) integrations.
+  - Client ID and Client Secret are shown once at creation and cannot be retrieved again.
