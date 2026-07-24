@@ -1,0 +1,55 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.butlr.io
+description: >-
+  Cross-cutting request/response semantics for the Butlr platform, derived from
+  the public developer documentation. Butlr exposes two data-plane APIs behind a
+  single host (api.butlr.io): a GraphQL API for asset management and a RESTful
+  Reporting API for historical time-series occupancy, plus real-time webhooks.
+authentication:
+  style: oauth2-bearer
+  detail: OAuth 2.0 (Auth0) Password or Client Credentials grant; Bearer access token
+  docs: https://docs.butlr.io/getting-started/authentication.md
+apis:
+  graphql:
+    endpoint: https://api.butlr.io/api/v3/graphql
+    reference: https://graphql-docs.butlr.io/graphql/
+    docs: https://docs.butlr.io/asset-management/graphql-api-overview.md
+  reporting_rest:
+    endpoint: https://api.butlr.io/api/v3/reporting
+    method: POST
+    docs: https://docs.butlr.io/historical-occupancy/reporting-api-overview.md
+idempotency:
+  supported: false
+  note: No idempotency-key header/parameter is documented in the public API docs.
+pagination:
+  style: graphql-filter
+  detail: >-
+    Asset-management queries use GraphQL with a documented filtering model rather
+    than cursor/offset pagination on the REST surface.
+  docs: https://docs.butlr.io/asset-management/filtering.md
+versioning:
+  style: uri-path
+  current: v3
+  detail: API version carried in the URL path (/api/v3/...); legacy v2 endpoints deprecated.
+time_semantics:
+  timezone: >-
+    Reporting queries must supply an explicit `timezone`; relative time queries
+    (e.g. -5m) are discouraged in favor of absolute start/stop times.
+  windowing:
+    params: [every, function, timezone, create_empty]
+    functions: [median, mean, max, sum]
+    guidance: median for 1-minute intervals; mean/max for larger intervals; sum for traffic
+error_envelope:
+  format: unspecified
+  note: The public docs do not publish a standardized error envelope (e.g. RFC 9457); errors are not catalogued.
+rate_limits:
+  documented: false
+webhooks:
+  model: event-driven HTTP POST, managed via GraphQL
+  filtering: [filters (by id), send_on_value_change]
+  docs: https://docs.butlr.io/real-time-occupancy/webhooks-overview.md
+cross_links:
+  authentication: authentication/butlr-technologies-authentication.yml
+  lifecycle: lifecycle/butlr-technologies-lifecycle.yml
+  webhooks: asyncapi/butlr-technologies-webhooks.yml

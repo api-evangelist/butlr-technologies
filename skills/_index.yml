@@ -1,0 +1,12 @@
+generated: '2026-07-18'
+method: generated
+source: https://docs.butlr.io
+skills:
+  - file: butlr-technologies-query-occupancy.md
+    name: Query historical occupancy from Butlr
+    api: Butlr Reporting API v3
+    operations: [clients/login, POST /api/v3/reporting]
+  - file: butlr-technologies-manage-webhooks.md
+    name: Subscribe to Butlr real-time occupancy webhooks
+    api: Butlr GraphQL API v3
+    operations: [clients/login, createWebhooks, listWebhooks, updateWebhooks, deleteWebhooks]

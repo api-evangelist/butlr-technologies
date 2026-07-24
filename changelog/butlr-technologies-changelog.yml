@@ -1,0 +1,47 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.butlr.io/changelog.md
+scheme: dated
+current_api_version: v3
+entries:
+  - date: '2025-11-21'
+    breaking: false
+    highlights:
+      - Introduced `filters` in webhook property to filter events containing certain ids
+      - Introduced `send_on_value_change` boolean so an event is sent only when the value changes
+  - date: '2025-10-10'
+    breaking: false
+    highlights:
+      - Added `floor_custom_id` / `room_custom_id` / `zone_custom_id` to the Reporting API (returned only when a value exists)
+  - date: '2025-08-13'
+    breaking: false
+    highlights:
+      - Added 1-minute rollup event types FLOOR_OCCUPANCY_1M, ROOM_OCCUPANCY_1M, ZONE_OCCUPANCY_1M
+      - Smoothed, minute-aligned occupancy counts recomputed within a rolling 5-minute look-back window
+  - date: '2025-04-30'
+    breaking: false
+    highlights:
+      - Introduced the `stats` API under Reporting for aggregate occupancy over a time range
+  - date: '2025-04-02'
+    breaking: false
+    highlights:
+      - Introduced Calibrated Occupancy (`calibrated:true` filter) to correct traffic-based miscounts
+  - date: '2025-03-01'
+    breaking: false
+    highlights:
+      - Added `floor_custom_id` / `room_custom_id` / `zone_custom_id` metadata fields to webhook messages
+  - date: '2024-12-12'
+    breaking: false
+    highlights:
+      - Real-Time Occupancy Webhooks released
+      - Tag Management (assign tags to floor/room/zone assets)
+      - Tag-Based Occupancy Queries
+  - date: '2024-10-11'
+    breaking: true
+    highlights:
+      - "Legacy v2 endpoints reached end-of-life: v2/spaces, v2/hives, v2/sensors and sub-resources"
+      - Login, Reporting, and Detections endpoints remain functional
+  - date: '2024-09-20'
+    breaking: true
+    highlights:
+      - Fixtures endpoint (and floor/space sub-resources) reached end-of-life; no replacement

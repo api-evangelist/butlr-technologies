@@ -1,0 +1,43 @@
+generated: '2026-07-18'
+method: searched
+status: published
+source: https://docs.butlr.io/mcp-server.md
+server:
+  name: butlr-mcp
+  description: >-
+    Official Butlr MCP Server. A thin, read-only wrapper around Butlr's GraphQL
+    and Reporting APIs that connects AI assistants (Claude Desktop, Claude Code,
+    Cursor, VS Code Copilot) to the Butlr occupancy-sensing platform through the
+    Model Context Protocol. It cannot modify any data in a Butlr account.
+  transport: stdio
+  repository: https://github.com/butlrtechnologies/butlr-mcp
+  npm: https://www.npmjs.com/package/@butlr/butlr-mcp-server
+  package: "@butlr/butlr-mcp-server"
+  version: 0.5.0
+  license: MIT
+  run: npx @butlr/butlr-mcp-server
+  auth:
+    type: oauth2-client-credentials
+    env: [BUTLR_CLIENT_ID, BUTLR_CLIENT_SECRET]
+    note: token refresh handled automatically; read-only access enforced
+tools:
+  - name: butlr_search_assets
+    description: Fuzzy-search sites, buildings, floors, rooms, and sensors by name
+  - name: butlr_get_asset_details
+    description: Comprehensive details for specific assets by ID, with batch support
+  - name: butlr_hardware_snapshot
+    description: Online/offline status and battery levels across your portfolio
+  - name: butlr_available_rooms
+    description: Currently unoccupied rooms, filterable by capacity and tags
+  - name: butlr_space_busyness
+    description: Current occupancy with qualitative labels and trend comparison
+  - name: butlr_traffic_flow
+    description: Entry/exit counts with hourly breakdown for traffic-mode sensors
+  - name: butlr_list_topology
+    description: Org hierarchy tree with flexible depth control
+  - name: butlr_fetch_entity_details
+    description: Retrieve specific fields for entities by ID (minimal token usage)
+  - name: butlr_get_occupancy_timeseries
+    description: Historical occupancy data with configurable time ranges
+  - name: butlr_get_current_occupancy
+    description: Real-time occupancy snapshot (last 5 minute median)

@@ -1,8 +1,31 @@
 aid: butlr-technologies
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/butlr-technologies.png
 name: Butlr Technologies
-description: Butlr Technologies is a company surfaced as a portfolio company of 500-global and added to
-  the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Butlr Technologies is a privacy-first people-sensing platform that uses
+  anonymous, heat-based (thermal) occupancy sensors to deliver real-time
+  activity insights for healthier, more efficient physical spaces across
+  workplaces, senior living, retail, and education. Butlr exposes a developer
+  platform behind api.butlr.io consisting of a GraphQL API for asset management
+  (organizations, sites, buildings, floors, rooms, zones, hives, sensors, and
+  tags), a RESTful Reporting API v3 for historical time-series occupancy and
+  traffic, and event-driven webhooks for real-time occupancy, traffic, and PIR
+  motion. Access is authenticated with OAuth 2.0 (Auth0) via password and
+  client-credentials grants, and an official read-only Model Context Protocol
+  (MCP) server connects AI assistants to the platform. Surfaced as a 500 Global
+  portfolio company and enriched into the API Evangelist network.
 url: https://raw.githubusercontent.com/api-evangelist/butlr-technologies/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,15 +35,95 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
-apis: []
+- Occupancy Sensing
+- People Counting
+- Smart Buildings
+- Space Utilization
+- IoT
+- Thermal Sensors
+- Real-Time Data
+- GraphQL
+- Webhooks
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: Butlr GraphQL API
+  description: >-
+    GraphQL API for efficient asset/resource management — query and mutate
+    organizations, sites, buildings, floors, rooms, zones, hives, sensors, asset
+    tags, and webhooks across the Butlr spatial data-model hierarchy.
+  humanURL: https://docs.butlr.io/asset-management/graphql-api-overview
+  baseURL: https://api.butlr.io/api/v3/graphql
+  properties:
+  - type: Documentation
+    url: https://docs.butlr.io/asset-management/graphql-api-overview
+  - type: APIReference
+    url: https://graphql-docs.butlr.io/graphql/
+- name: Butlr Reporting API
+  description: >-
+    RESTful Reporting API v3 delivering historical time-series occupancy and
+    traffic data aggregated by floor, room, or zone with windowing, aggregation
+    functions, timezones, and calibrated occupancy.
+  humanURL: https://docs.butlr.io/historical-occupancy/reporting-api-overview
+  baseURL: https://api.butlr.io/api/v3/reporting
+  properties:
+  - type: Documentation
+    url: https://docs.butlr.io/historical-occupancy/reporting-api-overview
 common:
 - type: Website
   url: https://butlr.com
+- type: DeveloperPortal
+  url: https://docs.butlr.io
+- type: Documentation
+  url: https://docs.butlr.io
+- type: APIReference
+  url: https://graphql-docs.butlr.io/graphql/
+- type: GettingStarted
+  url: https://docs.butlr.io/getting-started
+- type: Authentication
+  url: authentication/butlr-technologies-authentication.yml
+- type: Support
+  url: https://support.butlr.io
+- type: Blog
+  url: https://www.butlr.com/blog
+- type: GitHubOrganization
+  url: https://github.com/butlrtechnologies
+- type: SignUp
+  url: https://app.butlr.io
+- type: TermsOfService
+  url: https://www.butlr.com/legal/tc
+- type: PrivacyPolicy
+  url: https://www.butlr.com/legal/privacy-policy
+- type: MCPServer
+  url: mcp/butlr-technologies-mcp.yml
+- type: Packages
+  url: packages/butlr-technologies-packages.yml
+- type: LLMsTxt
+  url: llms/butlr-technologies-llms.txt
+- type: ChangeLog
+  url: changelog/butlr-technologies-changelog.yml
+- type: Lifecycle
+  url: lifecycle/butlr-technologies-lifecycle.yml
+- type: Deprecation
+  url: https://docs.butlr.io/changelog.md
+- type: Webhooks
+  url: asyncapi/butlr-technologies-webhooks.yml
+- type: Conventions
+  url: conventions/butlr-technologies-conventions.yml
+- type: Conformance
+  url: conformance/butlr-technologies-conformance.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DomainSecurity
+  url: security/butlr-technologies-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

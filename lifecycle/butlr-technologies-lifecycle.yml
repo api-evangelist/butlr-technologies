@@ -1,0 +1,25 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.butlr.io/changelog.md
+versioning:
+  scheme: uri-path
+  current: v3
+  observed: [v2, v3]
+  docs: https://docs.butlr.io/historical-occupancy/reporting-api-overview.md
+deprecation:
+  policy: >-
+    Butlr announces end-of-life dates for legacy endpoints in the dated changelog
+    and directs affected integrations to updated APIs. Legacy v2 asset endpoints
+    (v2/spaces, v2/hives, v2/sensors) reached EOL on 2024-10-11; the fixtures
+    endpoint reached EOL on 2024-09-20. Login, Reporting, and Detections
+    endpoints remain supported.
+  docs: https://docs.butlr.io/changelog.md
+  sunset_header: false
+  deprecated_endpoints:
+    - v2/spaces
+    - v2/hives
+    - v2/sensors
+    - fixtures
+status_page: null   # status.butlr.io does not resolve; no public status page found
+sla: null
+support: https://support.butlr.io

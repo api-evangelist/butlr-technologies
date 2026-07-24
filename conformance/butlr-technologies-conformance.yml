@@ -1,0 +1,25 @@
+generated: '2026-07-18'
+method: derived
+source: https://docs.butlr.io/getting-started/authentication.md
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: OAuth 2.0 Password and Client Credentials grants documented (Auth0)
+  - id: oidc
+    conforms: partial
+    evidence: Password grant returns an id_token; no published OIDC discovery document (/.well-known/openid-configuration returns 403)
+  - id: graphql
+    conforms: true
+    evidence: GraphQL API at /api/v3/graphql with published schema reference
+  - id: rest
+    conforms: true
+    evidence: RESTful Reporting API v3 (POST /api/v3/reporting)
+  - id: webhooks
+    conforms: true
+    evidence: Documented event-driven webhook catalog managed via GraphQL
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: No application/problem+json error envelope documented
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: Deprecations announced via changelog dates, not Sunset/Deprecation headers

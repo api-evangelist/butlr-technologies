@@ -1,0 +1,45 @@
+generated: '2026-07-18'
+method: searched
+type: Webhooks
+source: https://docs.butlr.io/real-time-occupancy/webhooks-overview.md
+description: >-
+  Butlr delivers real-time occupancy and traffic data via event-driven webhooks.
+  Webhooks are self-service and managed programmatically through the GraphQL API
+  (create, update, delete, list). No standalone AsyncAPI document is published;
+  this catalog captures the documented event surface. Webhook properties support
+  `filters` (limit events to certain ids) and `send_on_value_change` (emit only
+  when the value changes). Messages carry customer-context ids
+  (floor_custom_id / room_custom_id / zone_custom_id).
+delivery: http-post
+management:
+  api: GraphQL
+  docs: https://docs.butlr.io/real-time-occupancy/manage-webhooks.md
+  operations: [create webhooks, update webhooks, delete webhooks, list webhooks]
+events:
+  - name: Area Detections
+    docs: https://docs.butlr.io/real-time-occupancy/webhooks-overview/human-detections.md
+    description: Real-time detected people's locations as (x, y) coordinates within a sensor field of view
+  - name: Entryway Traffic
+    docs: https://docs.butlr.io/real-time-occupancy/webhooks-overview/human-traffic.md
+    description: Fires when someone enters or exits a monitored area
+  - name: Floor Occupancy
+    docs: https://docs.butlr.io/real-time-occupancy/webhooks-overview/floor-occupancy.md
+    description: Number of occupants detected on a specific floor
+  - name: FLOOR_OCCUPANCY_1M
+    description: Floor occupancy aggregated and smoothed at 1-minute granularity
+  - name: Room Occupancy
+    docs: https://docs.butlr.io/real-time-occupancy/webhooks-overview/room-occupancy.md
+    description: Number of occupants detected in a specific room
+  - name: ROOM_OCCUPANCY_1M
+    description: Room occupancy aggregated and smoothed at 1-minute granularity
+  - name: Zone Occupancy
+    docs: https://docs.butlr.io/real-time-occupancy/webhooks-overview/zone-occupancy.md
+    description: Number of occupants detected in a specific zone
+  - name: ZONE_OCCUPANCY_1M
+    description: Zone occupancy aggregated and smoothed at 1-minute granularity
+  - name: Motion Detection
+    docs: https://docs.butlr.io/real-time-occupancy/webhooks-overview/motion-detection.md
+    description: PIR motion activity detected by the Heatic 2+ sensor in a room
+  - name: No Motion Detection
+    docs: https://docs.butlr.io/real-time-occupancy/webhooks-overview/no-motion-detection.md
+    description: PIR event when the Heatic 2+ sensor detects no activity in a room

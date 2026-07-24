@@ -1,0 +1,26 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.npmjs.com/package/@butlr/butlr-mcp-server
+packages:
+  - language: javascript
+    registry: npm
+    name: "@butlr/butlr-mcp-server"
+    url: https://www.npmjs.com/package/@butlr/butlr-mcp-server
+    install: npx @butlr/butlr-mcp-server
+    version: 0.5.0
+    license: MIT
+    official: true
+    kind: mcp-server
+    description: >-
+      Official Model Context Protocol server providing secure, read-only access
+      to Butlr occupancy and asset data. Distributed on npm and run via npx.
+    repository: https://github.com/butlrtechnologies/butlr-mcp
+notes:
+  - >-
+    Butlr does not publish a traditional multi-language client SDK; the only
+    first-party published package is the MCP server above (an agent-access
+    server, not a REST/GraphQL client library), so no SDKs pointer is emitted.
+  - >-
+    The GitHub org (github.com/butlrtechnologies) also hosts forks/tooling
+    (smartmesh-sdk, paho.golang, prometheus-ecs-discovery, cdk-pipelines-github)
+    that are internal/infra, not API client libraries.

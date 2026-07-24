@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: butlr.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 19 07:16:20 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: docs.butlr.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 25 21:26:06 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.butlr.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec 10 23:59:59 2026 GMT
+  hsts: null
+domains:
+- domain: butlr.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: false
+- domain: butlr.io
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
