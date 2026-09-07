@@ -1,0 +1,50 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.butlr.io/asset-management/graphql-api-overview
+description: >-
+  Butlr's spatial data model is a hierarchy from the owning organization down to
+  individual sensors. Derived from the documented GraphQL asset model; no OpenAPI
+  is published so relationships are taken from the docs' data-model narrative.
+identifiers:
+  space_prefix: 'space_'
+  event_prefix: 'event_'
+  client_prefix: 'client_'
+entities:
+- name: Organization
+  description: Top of the hierarchy; owns and manages the Butlr hardware.
+- name: User
+  description: An account within an organization (admin by default); more granular roles planned.
+- name: Site
+  description: A group of buildings within a contiguous area (campus/city blocks) in one timezone.
+- name: Building
+  description: An individual structure within a site, made up of one or more floors.
+- name: Floor
+  description: A level within a building, containing rooms and zones.
+- name: Room
+  description: An enclosed space on a floor (office, conference room, bedroom).
+- name: Zone
+  description: A subsection of a room or floor for granular monitoring (seating, workstations, entry points).
+- name: Hive
+  description: The central hub on a floor that relays sensor data to the cloud.
+- name: Sensor
+  description: A thermal sensor attached to a floor, room, or zone; runs in traffic or presence mode.
+- name: AssetTag
+  description: A label applied to floor/room/zone assets for organization and tag-based queries.
+- name: Webhook
+  description: A subscription that delivers real-time occupancy/traffic/detection events.
+relationships:
+- {from: Organization, to: User,     type: has_many, via: organization}
+- {from: Organization, to: Site,     type: has_many, via: organization}
+- {from: Site,         to: Building, type: has_many, via: site}
+- {from: Building,     to: Floor,    type: has_many, via: building}
+- {from: Floor,        to: Room,     type: has_many, via: floor}
+- {from: Floor,        to: Zone,     type: has_many, via: floor}
+- {from: Room,         to: Zone,     type: has_many, via: room}
+- {from: Floor,        to: Hive,     type: has_many, via: floor}
+- {from: Hive,         to: Sensor,   type: has_many, via: hive}
+- {from: Sensor,       to: Floor,    type: belongs_to, via: floor}
+- {from: Sensor,       to: Room,     type: belongs_to, via: room}
+- {from: Sensor,       to: Zone,     type: belongs_to, via: zone}
+- {from: AssetTag,     to: Floor,    type: has_many, via: tag}
+- {from: AssetTag,     to: Room,     type: has_many, via: tag}
+- {from: AssetTag,     to: Zone,     type: has_many, via: tag}

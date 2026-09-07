@@ -1,0 +1,126 @@
+asyncapi: 3.0.0
+info:
+  title: Butlr Real-Time Occupancy Webhooks
+  version: 1.0.0
+  description: >-
+    API Evangelist generated AsyncAPI rendering of Butlr's documented real-time
+    occupancy webhook events. Butlr does not publish an AsyncAPI document; this
+    file is a faithful reconstruction from
+    https://docs.butlr.io/real-time-occupancy/webhooks-overview (payload shapes
+    and event types are taken verbatim from the docs). Subscribers register
+    webhook endpoints via the GraphQL API. Event ordering is not guaranteed;
+    consumers should use the timestamp field and process idempotently.
+  contact:
+    name: Butlr Support
+    url: https://support.butlr.io
+  externalDocs:
+    url: https://docs.butlr.io/real-time-occupancy/webhooks-overview
+x-provenance:
+  generated: '2026-07-18'
+  method: generated
+  source: https://docs.butlr.io/real-time-occupancy/webhooks-overview
+defaultContentType: application/json
+channels:
+  occupancyEvents:
+    address: '{subscriberWebhookUrl}'
+    description: The subscriber-hosted HTTPS endpoint Butlr POSTs events to.
+    parameters:
+      subscriberWebhookUrl:
+        description: The webhook URL registered by the subscriber via the GraphQL API.
+    messages:
+      detections: {$ref: '#/components/messages/Detections'}
+      traffic: {$ref: '#/components/messages/Traffic'}
+      floorOccupancy: {$ref: '#/components/messages/FloorOccupancy'}
+      roomOccupancy: {$ref: '#/components/messages/RoomOccupancy'}
+      zoneOccupancy: {$ref: '#/components/messages/ZoneOccupancy'}
+      motion: {$ref: '#/components/messages/Motion'}
+operations:
+  receiveOccupancyEvents:
+    action: receive
+    channel: {$ref: '#/channels/occupancyEvents'}
+    summary: Receive real-time occupancy, traffic, detection, and motion events.
+components:
+  schemas:
+    Envelope:
+      type: object
+      required: [id, type, timestamp, version, data]
+      properties:
+        id: {type: string, examples: ['event_xxx']}
+        type: {type: string}
+        timestamp: {type: integer, description: Unix epoch milliseconds.}
+        version: {type: string, examples: ['v1.0.0']}
+        metadata:
+          type: object
+          properties:
+            floor_custom_id: {type: string}
+            room_custom_id: {type: string}
+            zone_custom_id: {type: string}
+  messages:
+    Detections:
+      name: DETECTIONS
+      title: Area Detections
+      summary: Coordinates (x,y) of detected people within a sensor's field of view.
+      payload:
+        allOf:
+        - {$ref: '#/components/schemas/Envelope'}
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                local: {type: array, items: {type: array, items: {type: number}}}
+                world: {type: array, items: {type: array, items: {type: number}}}
+    Traffic:
+      name: TRAFFIC
+      title: Entryway Traffic
+      summary: Someone enters or exits a monitored area.
+      payload:
+        allOf:
+        - {$ref: '#/components/schemas/Envelope'}
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                in: {type: integer}
+                out: {type: integer}
+    FloorOccupancy:
+      name: FLOOR_OCCUPANCY
+      title: Floor Occupancy
+      summary: Number of occupants on a floor (also FLOOR_OCCUPANCY_1MIN, 1-minute smoothed).
+      payload:
+        allOf:
+        - {$ref: '#/components/schemas/Envelope'}
+        - type: object
+          properties:
+            data: {type: integer, description: Occupant count.}
+    RoomOccupancy:
+      name: ROOM_OCCUPANCY
+      title: Room Occupancy
+      summary: Number of occupants in a room (also ROOM_OCCUPANCY_1MIN, 1-minute smoothed).
+      payload:
+        allOf:
+        - {$ref: '#/components/schemas/Envelope'}
+        - type: object
+          properties:
+            data: {type: integer, description: Occupant count.}
+    ZoneOccupancy:
+      name: ZONE_OCCUPANCY
+      title: Zone Occupancy
+      summary: Number of occupants in a zone (also ZONE_OCCUPANCY_1MIN, 1-minute smoothed).
+      payload:
+        allOf:
+        - {$ref: '#/components/schemas/Envelope'}
+        - type: object
+          properties:
+            data: {type: integer, description: Occupant count.}
+    Motion:
+      name: PIR_MOTION
+      title: Motion / No Motion Detection
+      summary: PIR motion (PIR_MOTION) or no-motion (PIR_NO_MOTION) from the Heatic2+ sensor.
+      payload:
+        allOf:
+        - {$ref: '#/components/schemas/Envelope'}
+        - type: object
+          properties:
+            data: {type: object, description: Motion state for the room.}

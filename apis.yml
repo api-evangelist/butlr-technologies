@@ -98,6 +98,20 @@ apis:
   - type: Documentation
     url: https://docs.butlr.io/historical-occupancy/reporting-api-overview
 common:
+- type: Login
+  url: https://app.butlr.io
+- type: OAuthScopes
+  url: scopes/butlr-technologies-scopes.yml
+- type: WellKnown
+  url: well-known/butlr-technologies-well-known.yml
+- type: AsyncAPI
+  url: asyncapi/butlr-technologies-events-asyncapi.yml
+- type: DataModel
+  url: data-model/butlr-technologies-data-model.yml
+- type: VulnerabilityDisclosure
+  url: security/butlr-technologies-vulnerability-disclosure.yml
+- type: Security
+  url: security/butlr-technologies-vulnerability-disclosure.yml
 - type: Website
   url: https://butlr.com
 - type: DeveloperPortal
@@ -149,5 +163,3 @@ x-enrichment:
   status: backfilled
   pass: local-v1
   note: backfilled from .gitignore signal + verified work evidence
-x-parent: butlr
-x-relationship: product

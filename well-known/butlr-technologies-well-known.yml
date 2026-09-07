@@ -1,0 +1,29 @@
+generated: '2026-07-18'
+method: probed
+source: live GET of /.well-known/ paths on Butlr hosts
+hosts:
+- host: https://api.butlr.io
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/openid-configuration, status: 403}
+  - {path: /.well-known/oauth-authorization-server, status: 403}
+  - {path: /.well-known/api-catalog, status: 403}
+  - {path: /.well-known/ai-plugin.json, status: 403}
+- host: https://www.butlr.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://docs.butlr.io
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+notes: >-
+  No machine-readable /.well-known/ discovery documents are published. The API
+  host api.butlr.io returns HTTP 403 (WAF) to all probes; the marketing and docs
+  hosts return 404. OAuth/OIDC discovery is delegated to Auth0 (the provider's
+  identity backend) and is not exposed on a Butlr-owned .well-known path. No raw
+  documents were saved because none returned 200.

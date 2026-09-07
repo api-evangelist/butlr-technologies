@@ -1,0 +1,30 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.butlr.io/getting-started/mint-client-credentials
+docs: https://docs.butlr.io/getting-started/mint-client-credentials
+audience: https://butlrauth/
+identity_provider: Auth0
+schemes:
+- name: OAuth2 Client Credentials
+  flow: clientCredentials
+  audience: https://butlrauth/
+scopes:
+- {scope: 'read:spaces',   description: Read access to spaces (sites/buildings/floors).}
+- {scope: 'write:spaces',  description: Create and update spaces.}
+- {scope: 'delete:spaces', description: Delete spaces.}
+- {scope: 'read:rooms',    description: Read access to rooms.}
+- {scope: 'write:rooms',   description: Create and update rooms.}
+- {scope: 'delete:rooms',  description: Delete rooms.}
+- {scope: 'read:sensors',  description: Read access to sensors.}
+- {scope: 'write:sensors', description: Create and update sensors.}
+- {scope: 'delete:sensors',description: Delete sensors.}
+- {scope: 'read:hives',    description: Read access to hives (sensor gateways/hubs).}
+- {scope: 'write:hives',   description: Create and update hives.}
+- {scope: 'delete:hives',  description: Delete hives.}
+notes: >-
+  Scopes are granted to Auth0 M2M clients created for the Butlr API audience
+  (https://butlrauth/). The documented default scope set covers the spaces,
+  rooms, sensors, and hives resource families with read/write/delete access.
+  The official MCP server is provisioned with read-only scopes only. Derived
+  from the client-credential minting docs (no OpenAPI oauth2 flow declaration
+  is published, so the derive-oauth-scopes.py baseline was not applicable).
